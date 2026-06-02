@@ -22,7 +22,7 @@ tags:
   - Multimodal
   - China
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-05-29'
 specificationVersion: '0.19'
 apis:
   - aid: kimi-moonshot:chat-completions
@@ -38,9 +38,15 @@ apis:
       - Chat
       - LLM
       - OpenAI Compatible
+      - Streaming
+      - SSE
     properties:
       - type: Documentation
         url: https://platform.moonshot.cn/docs
+      - type: OpenAPI
+        url: openapi/kimi-moonshot-openapi.json
+      - type: AsyncAPI
+        url: asyncapi/kimi-moonshot-asyncapi.yml
   - aid: kimi-moonshot:embeddings
     name: Kimi Embeddings API
     description: >-
