@@ -1,0 +1,334 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Moonshot AI API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "列出模型",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/models",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "列出当前可用的所有模型。"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "查询余额",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/users/me/balance",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "查询您在 Kimi 开放平台上的可用余额、代金券余额和现金余额。"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "文件列表",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/files",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "列出当前用户上传的所有文件。"
+        },
+        {
+          "info": {
+            "name": "上传文件",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "purpose",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "上传文件用于内容提取、图片理解或视频理解。"
+        },
+        {
+          "info": {
+            "name": "获取文件信息",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "文件标识符"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "获取指定已上传文件的元数据。"
+        },
+        {
+          "info": {
+            "name": "删除文件",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.moonshot.cn/v1/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "文件标识符"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "删除一个已上传的文件。"
+        },
+        {
+          "info": {
+            "name": "获取文件内容",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/files/:file_id/content",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "文件标识符"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "获取以 `file-extract` 用途上传的文件的提取文本内容。"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "创建聊天补全",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "为聊天消息创建补全结果。支持标准聊天、Partial Mode 和 Tool Use（函数调用）。"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "估算 Token 数量",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/tokenizers/estimate-token-count",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "估算给定消息和模型所需的 Token 数量。输入结构与聊天补全几乎相同。"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "列出批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/batches",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "分页游标，传入上一页最后一个 batch 的 ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "每页数量，默认 20"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "列出当前组织的批处理任务。"
+        },
+        {
+          "info": {
+            "name": "创建批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/batches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "创建一个批处理任务。需要先通过文件接口上传一个 purpose=\"batch\" 的 JSONL 文件，然后使用返回的 file_id 创建任务。"
+        },
+        {
+          "info": {
+            "name": "获取批处理任务详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/batches/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "批处理任务的 ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "获取指定批处理任务的状态和详细信息。"
+        },
+        {
+          "info": {
+            "name": "取消批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/batches/:batch_id/cancel",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "批处理任务的 ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "取消一个正在进行的批处理任务。取消后，任务状态将先变为 cancelling，最终变为 cancelled。仅 validating、in_progress、finalizing 状态的任务可以取消。"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
