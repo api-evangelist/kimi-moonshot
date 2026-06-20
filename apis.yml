@@ -13,7 +13,7 @@ description: >-
   and the platform offers multimodal text, image, and video inputs on the
   flagship Kimi K2.x line. Open-source weights for prior Kimi releases live
   under the MoonshotAI GitHub organization.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - LLM
   - Long Context
