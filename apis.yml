@@ -144,6 +144,10 @@ apis:
       - type: Repository
         url: https://github.com/MoonshotAI
 common:
+  - type: DomainSecurity
+    url: security/kimi-moonshot-domain-security.yml
+  - type: Authentication
+    url: authentication/kimi-moonshot-authentication.yml
   - type: Website
     url: https://www.moonshot.cn/
   - type: Assistant
@@ -156,6 +160,8 @@ common:
     url: https://github.com/MoonshotAI
   - type: HuggingFace
     url: https://huggingface.co/moonshotai
+  - url: https://www.kimi.com/blog
+    type: Blog
 integrations:
   - name: OpenAI SDK
   - name: LangChain
