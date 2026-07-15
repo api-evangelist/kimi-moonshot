@@ -144,6 +144,8 @@ apis:
       - type: Repository
         url: https://github.com/MoonshotAI
 common:
+  - type: AgenticAccess
+    url: agentic-access/kimi-moonshot-agentic-access.yml
   - type: DomainSecurity
     url: security/kimi-moonshot-domain-security.yml
   - type: Authentication
