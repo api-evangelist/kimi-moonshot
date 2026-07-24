@@ -1,0 +1,309 @@
+openapi: 3.1.0
+info:
+  title: Moonshot AI Files API
+  version: 1.0.0
+  description: Moonshot AI / Kimi 大语言模型服务 API
+servers:
+- url: https://api.moonshot.cn
+  description: 生产环境
+tags:
+- name: Files
+paths:
+  /v1/files:
+    post:
+      summary: 上传文件
+      description: 上传文件用于内容提取、图片理解或视频理解。
+      tags:
+      - Files
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 要上传的文件
+                purpose:
+                  type: string
+                  enum:
+                  - file-extract
+                  - image
+                  - video
+                  - batch
+                  description: 指定上传文件的处理方式。file-extract：抽取文件内容；image：上传图片，用于视觉理解；video：上传视频，用于视频理解；batch：上传 JSONL 文件，用于批处理任务
+              required:
+              - file
+              - purpose
+      responses:
+        '200':
+          description: 已上传文件的元数据
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileObject'
+        '400':
+          description: 请求错误 - 上传参数无效
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: 未授权 - API 密钥无效或缺失
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务器错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: 文件列表
+      description: 列出当前用户上传的所有文件。
+      tags:
+      - Files
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: 已上传文件列表
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '401':
+          description: 未授权 - API 密钥无效或缺失
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务器错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/files/{file_id}:
+    get:
+      summary: 获取文件信息
+      description: 获取指定已上传文件的元数据。
+      tags:
+      - Files
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        description: 文件标识符
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 文件元数据
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileObject'
+        '401':
+          description: 未授权 - API 密钥无效或缺失
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 文件未找到
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务器错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: 删除文件
+      description: 删除一个已上传的文件。
+      tags:
+      - Files
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        description: 文件标识符
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 删除结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDeleteResponse'
+        '401':
+          description: 未授权 - API 密钥无效或缺失
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 文件未找到
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务器错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/files/{file_id}/content:
+    get:
+      summary: 获取文件内容
+      description: 获取以 `file-extract` 用途上传的文件的提取文本内容。
+      tags:
+      - Files
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        description: 文件标识符
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 提取的文件内容
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: 提取的文件内容（纯文本）
+        '401':
+          description: 未授权 - API 密钥无效或缺失
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 文件未找到
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务器错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    FileObject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 文件唯一标识符
+        object:
+          type: string
+          description: 对象类型
+          example: file
+        bytes:
+          type: integer
+          description: 文件大小（字节）
+        created_at:
+          type: integer
+          description: 文件创建时的 Unix 时间戳
+        filename:
+          type: string
+          description: 原始文件名
+        purpose:
+          type: string
+          description: 上传文件时指定的用途。file-extract：抽取文件内容；image：上传图片，用于视觉理解；video：上传视频，用于视频理解；batch：上传 JSONL 文件，用于批处理任务
+          enum:
+          - file-extract
+          - image
+          - video
+          - batch
+        status:
+          type: string
+          description: 文件处理状态
+          example: ready
+        status_details:
+          type: string
+          description: 处理失败或返回警告时的额外状态详情
+      required:
+      - id
+      - object
+      - bytes
+      - created_at
+      - filename
+      - purpose
+      - status
+    FileDeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 已删除文件的标识符
+        object:
+          type: string
+          example: file
+        deleted:
+          type: boolean
+          description: 文件是否删除成功
+      required:
+      - id
+      - object
+      - deleted
+    FileListResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileObject'
+      required:
+      - object
+      - data
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 描述错误原因的错误消息
+            type:
+              type: string
+              description: 错误类型
+            code:
+              type: string
+              description: 错误码
+          required:
+          - message
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization 请求头需要一个 Bearer 令牌。使用 MOONSHOT_API_KEY 作为令牌。这是一个服务端密钥，请在 [API 密钥页面](https://platform.kimi.com/console/api-keys) 生成。
