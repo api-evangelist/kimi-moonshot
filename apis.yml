@@ -13,7 +13,20 @@ description: >-
   and the platform offers multimodal text, image, and video inputs on the
   flagship Kimi K2.x line. Open-source weights for prior Kimi releases live
   under the MoonshotAI GitHub organization.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kimi-moonshot.png
 tags:
   - LLM
   - Long Context
@@ -25,124 +38,181 @@ created: '2026-05-23'
 modified: '2026-05-29'
 specificationVersion: '0.19'
 apis:
-  - aid: kimi-moonshot:chat-completions
-    name: Kimi Chat Completions API
-    description: >-
-      OpenAI-compatible chat completions endpoint. Accepts a messages array,
-      model identifier (moonshot-v1-8k / 32k / 128k, kimi-k2.5, kimi-k2.6),
-      and standard sampling parameters. Supports streaming responses,
-      function/tool calling, and JSON mode.
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/chat/completions
-    tags:
-      - Chat
-      - LLM
-      - OpenAI Compatible
-      - Streaming
-      - SSE
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-      - type: OpenAPI
-        url: openapi/kimi-moonshot-openapi.json
-      - type: AsyncAPI
-        url: asyncapi/kimi-moonshot-asyncapi.yml
-  - aid: kimi-moonshot:embeddings
-    name: Kimi Embeddings API
-    description: >-
-      OpenAI-compatible embeddings endpoint that returns vector
-      representations of input text for semantic search, clustering, and
-      retrieval-augmented generation workflows.
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/embeddings
-    tags:
-      - Embeddings
-      - Vectors
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-  - aid: kimi-moonshot:files
-    name: Kimi Files API
-    description: >-
-      File management endpoint for uploading documents that can be referenced
-      from chat completions (for example, long-document Q&A and the
-      file_id-based context attachment pattern).
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/files
-    tags:
-      - Files
-      - Documents
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-  - aid: kimi-moonshot:fine-tuning
-    name: Kimi Fine-Tuning API
-    description: >-
-      Fine-tuning jobs endpoint for customizing Moonshot base models on
-      customer-supplied training data. Mirrors the OpenAI fine-tuning surface.
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/fine_tuning
-    tags:
-      - Fine-Tuning
-      - Training
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-  - aid: kimi-moonshot:models
-    name: Kimi Models API
-    description: >-
-      Lists models available to the authenticated account and exposes per-model
-      metadata (context window, modality support, pricing tier).
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/models
-    tags:
-      - Models
-      - Catalog
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-  - aid: kimi-moonshot:tokenizer
-    name: Kimi Tokenizer API
-    description: >-
-      Helper endpoint exposed by the Moonshot platform for counting tokens
-      against a given model's tokenizer prior to submission, useful for
-      managing long-context budgets.
-    humanURL: https://platform.moonshot.cn/docs
-    baseURL: https://api.moonshot.cn/v1/tokenizers
-    tags:
-      - Tokenizer
-      - Utilities
-    properties:
-      - type: Documentation
-        url: https://platform.moonshot.cn/docs
-  - aid: kimi-moonshot:assistant
-    name: Kimi Assistant (kimi.com)
-    description: >-
-      Consumer-facing AI assistant at kimi.com (also kimi.ai) powered by the
-      Kimi models. Supports long-document upload, web search grounding, and
-      tool use through a chat UI.
-    humanURL: https://kimi.com/
-    baseURL: https://kimi.com/
-    tags:
-      - Assistant
-      - Consumer
-    properties:
-      - type: Website
-        url: https://kimi.com/
-  - aid: kimi-moonshot:open-weights
-    name: Moonshot Open-Weights Releases
-    description: >-
-      Open-weight Kimi model releases (for example prior Kimi K1 / K2
-      checkpoints) published under the MoonshotAI GitHub organization for
-      research and self-hosted use.
-    humanURL: https://github.com/MoonshotAI
-    baseURL: https://github.com/MoonshotAI
-    tags:
-      - Open Weights
-      - Research
-    properties:
-      - type: Repository
-        url: https://github.com/MoonshotAI
+- aid: kimi-moonshot:embeddings
+  name: Kimi Embeddings API
+  description: >-
+    OpenAI-compatible embeddings endpoint that returns vector representations of input text for semantic
+    search, clustering, and retrieval-augmented generation workflows.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/embeddings
+  tags:
+  - Embeddings
+  - Vectors
+  properties:
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+- aid: kimi-moonshot:files
+  name: Kimi Files API
+  description: >-
+    File management endpoint for uploading documents that can be referenced from chat completions (for
+    example, long-document Q&A and the file_id-based context attachment pattern).
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/files
+  tags:
+  - Files
+  - Documents
+  properties:
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+- aid: kimi-moonshot:fine-tuning
+  name: Kimi Fine-Tuning API
+  description: >-
+    Fine-tuning jobs endpoint for customizing Moonshot base models on customer-supplied training data.
+    Mirrors the OpenAI fine-tuning surface.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/fine_tuning
+  tags:
+  - Fine-Tuning
+  - Training
+  properties:
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+- aid: kimi-moonshot:models
+  name: Kimi Models API
+  description: >-
+    Lists models available to the authenticated account and exposes per-model metadata (context window,
+    modality support, pricing tier).
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/models
+  tags:
+  - Models
+  - Catalog
+  properties:
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+- aid: kimi-moonshot:tokenizer
+  name: Kimi Tokenizer API
+  description: >-
+    Helper endpoint exposed by the Moonshot platform for counting tokens against a given model's tokenizer
+    prior to submission, useful for managing long-context budgets.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/tokenizers
+  tags:
+  - Tokenizer
+  - Utilities
+  properties:
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+- aid: kimi-moonshot:assistant
+  name: Kimi Assistant (kimi.com)
+  description: >-
+    Consumer-facing AI assistant at kimi.com (also kimi.ai) powered by the Kimi models. Supports long-document
+    upload, web search grounding, and tool use through a chat UI.
+  humanURL: https://kimi.com/
+  baseURL: https://kimi.com/
+  tags:
+  - Assistant
+  - Consumer
+  properties:
+  - type: Website
+    url: https://kimi.com/
+- aid: kimi-moonshot:open-weights
+  name: Moonshot Open-Weights Releases
+  description: >-
+    Open-weight Kimi model releases (for example prior Kimi K1 / K2 checkpoints) published under the MoonshotAI
+    GitHub organization for research and self-hosted use.
+  humanURL: https://github.com/MoonshotAI
+  baseURL: https://github.com/MoonshotAI
+  tags:
+  - Open Weights
+  - Research
+  properties:
+  - type: Repository
+    url: https://github.com/MoonshotAI
+- aid: kimi-moonshot:kimi-moonshot-batch-api
+  name: Kimi (Moonshot AI) Batch API
+  description: The Batch API from Kimi (Moonshot AI) — 3 operation(s) for batch.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-batch-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-billing-api
+  name: Kimi (Moonshot AI) Billing API
+  description: The Billing API from Kimi (Moonshot AI) — 1 operation(s) for billing.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-billing-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-chat-api
+  name: Kimi (Moonshot AI) Chat API
+  description: The Chat API from Kimi (Moonshot AI) — 1 operation(s) for chat.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Chat
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-chat-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-files-api
+  name: Kimi (Moonshot AI) Files API
+  description: The Files API from Kimi (Moonshot AI) — 3 operation(s) for files.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-files-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-models-api
+  name: Kimi (Moonshot AI) Models API
+  description: The Models API from Kimi (Moonshot AI) — 1 operation(s) for models.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Models
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-models-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-utilities-api
+  name: Kimi (Moonshot AI) Utilities API
+  description: The Utilities API from Kimi (Moonshot AI) — 1 operation(s) for utilities.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/chat/completions
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/kimi-moonshot-agentic-access.yml
