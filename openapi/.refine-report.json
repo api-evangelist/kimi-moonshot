@@ -1,0 +1,28 @@
+{
+  "provider": "kimi-moonshot",
+  "sources": [
+    "kimi-moonshot-openapi.json"
+  ],
+  "outputs": [
+    "kimi-moonshot-batch-api-openapi.yml",
+    "kimi-moonshot-billing-api-openapi.yml",
+    "kimi-moonshot-chat-api-openapi.yml",
+    "kimi-moonshot-files-api-openapi.yml",
+    "kimi-moonshot-models-api-openapi.yml",
+    "kimi-moonshot-utilities-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/kimi-moonshot-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "kimi-moonshot-openapi.json: declared missing tag: Batch",
+    "kimi-moonshot-openapi.json: declared missing tag: Billing",
+    "kimi-moonshot-openapi.json: declared missing tag: Chat",
+    "kimi-moonshot-openapi.json: declared missing tag: Files",
+    "kimi-moonshot-openapi.json: declared missing tag: Models",
+    "kimi-moonshot-openapi.json: declared missing tag: Utilities"
+  ],
+  "skipped": []
+}
