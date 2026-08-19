@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Moonshot AI Billing API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "查询余额",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/users/me/balance",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "查询您在 Kimi 开放平台上的可用余额、代金券余额和现金余额。"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "1a2960e1-47f9-438a-8e12-598c7daab048",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3eb6ceef-ffa5-4f43-a942-6bdcbdf23283",
+          "name": "列出模型",
+          "request": {
+            "name": "列出模型",
+            "description": {
+              "content": "列出当前可用的所有模型。",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2dcead4a-f583-4e33-bec5-7839db09c2b0",
+              "name": "模型列表",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"kimi-k2.5\",\n      \"object\": \"model\",\n      \"created\": 3804,\n      \"owned_by\": \"moonshot\",\n      \"context_length\": 6954,\n      \"supports_image_in\": false,\n      \"supports_video_in\": true,\n      \"supports_reasoning\": true\n    },\n    {\n      \"id\": \"kimi-k2.5\",\n      \"object\": \"model\",\n      \"created\": 2204,\n      \"owned_by\": \"moonshot\",\n      \"context_length\": 3556,\n      \"supports_image_in\": true,\n      \"supports_video_in\": false,\n      \"supports_reasoning\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f6cb04a-dfe5-4f56-807d-912a77c99d01",
+              "name": "未授权 - API 密钥无效或缺失",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.moonshot.cn",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f468b70a-bbed-4134-9562-b91102cc9340",
+    "name": "Moonshot AI Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Moonshot AI / Kimi 大语言模型服务 API",
+      "type": "text/plain"
+    }
+  }
+}

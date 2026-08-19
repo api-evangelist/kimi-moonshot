@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Moonshot AI Batch API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "列出批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/batches",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "分页游标，传入上一页最后一个 batch 的 ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "每页数量，默认 20"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "列出当前组织的批处理任务。"
+        },
+        {
+          "info": {
+            "name": "创建批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/batches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "创建一个批处理任务。需要先通过文件接口上传一个 purpose=\"batch\" 的 JSONL 文件，然后使用返回的 file_id 创建任务。"
+        },
+        {
+          "info": {
+            "name": "获取批处理任务详情",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.moonshot.cn/v1/batches/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "批处理任务的 ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "获取指定批处理任务的状态和详细信息。"
+        },
+        {
+          "info": {
+            "name": "取消批处理任务",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/batches/:batch_id/cancel",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "批处理任务的 ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "取消一个正在进行的批处理任务。取消后，任务状态将先变为 cancelling，最终变为 cancelled。仅 validating、in_progress、finalizing 状态的任务可以取消。"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

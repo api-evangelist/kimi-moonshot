@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Moonshot AI Chat API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "创建聊天补全",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.moonshot.cn/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "为聊天消息创建补全结果。支持标准聊天、Partial Mode 和 Tool Use（函数调用）。"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
