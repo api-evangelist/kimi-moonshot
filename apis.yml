@@ -30,6 +30,13 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kimi-moons
 tags:
   - LLM
   - Long Context
+  - Artificial Intelligence
+  - OpenAI-Compatible
+  - Multi-Modal
+  - China
+tags_raw:
+  - LLM
+  - Long Context
   - AI
   - OpenAI Compatible
   - Multimodal
@@ -59,6 +66,9 @@ apis:
   humanURL: https://platform.moonshot.cn/docs
   baseURL: https://api.moonshot.cn/v1/files
   tags:
+  - File
+  - Documents
+  tags_raw:
   - Files
   - Documents
   properties:
@@ -177,6 +187,8 @@ apis:
   humanURL: https://platform.moonshot.cn/docs
   baseURL: https://api.moonshot.cn/v1/chat/completions
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
