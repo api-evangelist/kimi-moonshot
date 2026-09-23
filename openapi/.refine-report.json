@@ -1,7 +1,7 @@
 {
   "provider": "kimi-moonshot",
   "sources": [
-    "kimi-moonshot-openapi.json"
+    "_original/kimi-moonshot-openapi.json"
   ],
   "outputs": [
     "kimi-moonshot-batch-api-openapi.yml",
@@ -11,18 +11,26 @@
     "kimi-moonshot-models-api-openapi.yml",
     "kimi-moonshot-utilities-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/kimi-moonshot-openapi.json"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kimi-moonshot-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "kimi-moonshot-openapi.json: declared missing tag: Batch",
     "kimi-moonshot-openapi.json: declared missing tag: Billing",
     "kimi-moonshot-openapi.json: declared missing tag: Chat",
     "kimi-moonshot-openapi.json: declared missing tag: Files",
     "kimi-moonshot-openapi.json: declared missing tag: Models",
-    "kimi-moonshot-openapi.json: declared missing tag: Utilities"
+    "kimi-moonshot-openapi.json: declared missing tag: Utilities",
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "kimi-moonshot-batch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kimi-moonshot-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kimi-moonshot-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kimi-moonshot-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kimi-moonshot-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kimi-moonshot-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

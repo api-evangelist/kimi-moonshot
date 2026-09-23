@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Moonshot AI Batch API
   version: 1.0.0
@@ -48,6 +48,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: postV1Batches
+      x-operation-id-source: derived
     get:
       summary: 列出批处理任务
       description: 列出当前组织的批处理任务。
@@ -88,6 +90,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getV1Batches
+      x-operation-id-source: derived
   /v1/batches/{batch_id}:
     get:
       summary: 获取批处理任务详情
@@ -128,6 +132,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getV1BatchesByBatchId
+      x-operation-id-source: derived
   /v1/batches/{batch_id}/cancel:
     post:
       summary: 取消批处理任务
@@ -174,43 +180,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: postV1BatchesByBatchIdCancel
+      x-operation-id-source: derived
 components:
   schemas:
-    BatchListResponse:
+    BatchCreateRequest:
       type: object
       properties:
-        object:
+        input_file_id:
           type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchObject'
-        has_more:
-          type: boolean
-          description: 是否还有更多数据
-      required:
-      - object
-      - data
-    ErrorResponse:
-      type: object
-      properties:
-        error:
+          description: 输入文件的 ID，必须是通过 purpose="batch" 上传的 .jsonl 文件
+        endpoint:
+          type: string
+          description: 请求端点，目前仅支持 /v1/chat/completions
+          enum:
+          - /v1/chat/completions
+        completion_window:
+          type: string
+          description: 任务处理的时间窗口，支持语义化格式如 12h、1d、3d，最小 12h，最大 7d
+        metadata:
           type: object
-          properties:
-            message:
-              type: string
-              description: 描述错误原因的错误消息
-            type:
-              type: string
-              description: 错误类型
-            code:
-              type: string
-              description: 错误码
-          required:
-          - message
+          description: 自定义元数据，最多 16 个键值对，key 最长 64 字符，value 最长 512 字符
+          additionalProperties:
+            type: string
+            maxLength: 512
       required:
-      - error
+      - input_file_id
+      - endpoint
+      - completion_window
     BatchObject:
       type: object
       properties:
@@ -308,30 +305,41 @@ components:
       - status
       - created_at
       - request_counts
-    BatchCreateRequest:
+    ErrorResponse:
       type: object
       properties:
-        input_file_id:
-          type: string
-          description: 输入文件的 ID，必须是通过 purpose="batch" 上传的 .jsonl 文件
-        endpoint:
-          type: string
-          description: 请求端点，目前仅支持 /v1/chat/completions
-          enum:
-          - /v1/chat/completions
-        completion_window:
-          type: string
-          description: 任务处理的时间窗口，支持语义化格式如 12h、1d、3d，最小 12h，最大 7d
-        metadata:
+        error:
           type: object
-          description: 自定义元数据，最多 16 个键值对，key 最长 64 字符，value 最长 512 字符
-          additionalProperties:
-            type: string
-            maxLength: 512
+          properties:
+            message:
+              type: string
+              description: 描述错误原因的错误消息
+            type:
+              type: string
+              description: 错误类型
+            code:
+              type: string
+              description: 错误码
+          required:
+          - message
       required:
-      - input_file_id
-      - endpoint
-      - completion_window
+      - error
+    BatchListResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchObject'
+        has_more:
+          type: boolean
+          description: 是否还有更多数据
+      required:
+      - object
+      - data
     BatchRequestCounts:
       type: object
       properties:
