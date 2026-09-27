@@ -222,54 +222,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: 描述错误原因的错误消息
-            type:
-              type: string
-              description: 错误类型
-            code:
-              type: string
-              description: 错误码
-          required:
-          - message
-      required:
-      - error
-    FileDeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 已删除文件的标识符
-        object:
-          type: string
-          example: file
-        deleted:
-          type: boolean
-          description: 文件是否删除成功
-      required:
-      - id
-      - object
-      - deleted
-    FileListResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileObject'
-      required:
-      - object
-      - data
     FileObject:
       type: object
       properties:
@@ -312,6 +264,54 @@ components:
       - filename
       - purpose
       - status
+    FileListResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileObject'
+      required:
+      - object
+      - data
+    FileDeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 已删除文件的标识符
+        object:
+          type: string
+          example: file
+        deleted:
+          type: boolean
+          description: 文件是否删除成功
+      required:
+      - id
+      - object
+      - deleted
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 描述错误原因的错误消息
+            type:
+              type: string
+              description: 错误类型
+            code:
+              type: string
+              description: 错误码
+          required:
+          - message
+      required:
+      - error
   securitySchemes:
     bearerAuth:
       type: http

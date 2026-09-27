@@ -40,25 +40,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: 描述错误原因的错误消息
-            type:
-              type: string
-              description: 错误类型
-            code:
-              type: string
-              description: 错误码
-          required:
-          - message
-      required:
-      - error
     BalanceResponse:
       type: object
       properties:
@@ -100,6 +81,25 @@ components:
       - data
       - scode
       - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 描述错误原因的错误消息
+            type:
+              type: string
+              description: 错误类型
+            code:
+              type: string
+              description: 错误码
+          required:
+          - message
+      required:
+      - error
   securitySchemes:
     bearerAuth:
       type: http
