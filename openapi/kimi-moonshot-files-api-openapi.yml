@@ -222,19 +222,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileListResponse:
+    FileDeleteResponse:
       type: object
       properties:
+        id:
+          type: string
+          description: 已删除文件的标识符
         object:
           type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileObject'
+          example: file
+        deleted:
+          type: boolean
+          description: 文件是否删除成功
       required:
+      - id
       - object
-      - data
+      - deleted
     ErrorResponse:
       type: object
       properties:
@@ -296,22 +299,19 @@ components:
       - filename
       - purpose
       - status
-    FileDeleteResponse:
+    FileListResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: 已删除文件的标识符
         object:
           type: string
-          example: file
-        deleted:
-          type: boolean
-          description: 文件是否删除成功
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileObject'
       required:
-      - id
       - object
-      - deleted
+      - data
   securitySchemes:
     bearerAuth:
       type: http

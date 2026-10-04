@@ -181,20 +181,6 @@ apis:
     url: https://platform.moonshot.cn/docs
   - type: AsyncAPI
     url: asyncapi/kimi-moonshot-asyncapi.yml
-- aid: kimi-moonshot:kimi-moonshot-chat-api
-  name: Kimi (Moonshot AI) Chat API
-  description: The Chat API from Kimi (Moonshot AI) — 1 operation(s) for chat.
-  humanURL: https://platform.moonshot.cn/docs
-  baseURL: https://api.moonshot.cn/v1/chat/completions
-  tags:
-  - Chat
-  properties:
-  - type: OpenAPI
-    url: openapi/kimi-moonshot-chat-api-openapi.yml
-  - type: Documentation
-    url: https://platform.moonshot.cn/docs
-  - type: AsyncAPI
-    url: asyncapi/kimi-moonshot-asyncapi.yml
 - aid: kimi-moonshot:kimi-moonshot-files-api
   name: Kimi (Moonshot AI) Files API
   description: The Files API from Kimi (Moonshot AI) — 3 operation(s) for files.
@@ -235,6 +221,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/kimi-moonshot-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://platform.moonshot.cn/docs
+  - type: AsyncAPI
+    url: asyncapi/kimi-moonshot-asyncapi.yml
+- aid: kimi-moonshot:kimi-moonshot-chat-completions-api
+  name: Kimi (Moonshot AI) Chat Completions API
+  description: The Chat Completions API from Kimi (Moonshot AI) — 1 operation(s) for chat completions.
+  humanURL: https://platform.moonshot.cn/docs
+  baseURL: https://api.moonshot.cn/v1/embeddings
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/kimi-moonshot-chat-completions-api-openapi.yml
   - type: Documentation
     url: https://platform.moonshot.cn/docs
   - type: AsyncAPI

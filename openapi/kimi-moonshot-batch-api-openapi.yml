@@ -184,6 +184,49 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    BatchCreateRequest:
+      type: object
+      properties:
+        input_file_id:
+          type: string
+          description: 输入文件的 ID，必须是通过 purpose="batch" 上传的 .jsonl 文件
+        endpoint:
+          type: string
+          description: 请求端点，目前仅支持 /v1/chat/completions
+          enum:
+          - /v1/chat/completions
+        completion_window:
+          type: string
+          description: 任务处理的时间窗口，支持语义化格式如 12h、1d、3d，最小 12h，最大 7d
+        metadata:
+          type: object
+          description: 自定义元数据，最多 16 个键值对，key 最长 64 字符，value 最长 512 字符
+          additionalProperties:
+            type: string
+            maxLength: 512
+      required:
+      - input_file_id
+      - endpoint
+      - completion_window
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 描述错误原因的错误消息
+            type:
+              type: string
+              description: 错误类型
+            code:
+              type: string
+              description: 错误码
+          required:
+          - message
+      required:
+      - error
     BatchObject:
       type: object
       properties:
@@ -281,65 +324,6 @@ components:
       - status
       - created_at
       - request_counts
-    BatchCreateRequest:
-      type: object
-      properties:
-        input_file_id:
-          type: string
-          description: 输入文件的 ID，必须是通过 purpose="batch" 上传的 .jsonl 文件
-        endpoint:
-          type: string
-          description: 请求端点，目前仅支持 /v1/chat/completions
-          enum:
-          - /v1/chat/completions
-        completion_window:
-          type: string
-          description: 任务处理的时间窗口，支持语义化格式如 12h、1d、3d，最小 12h，最大 7d
-        metadata:
-          type: object
-          description: 自定义元数据，最多 16 个键值对，key 最长 64 字符，value 最长 512 字符
-          additionalProperties:
-            type: string
-            maxLength: 512
-      required:
-      - input_file_id
-      - endpoint
-      - completion_window
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: 描述错误原因的错误消息
-            type:
-              type: string
-              description: 错误类型
-            code:
-              type: string
-              description: 错误码
-          required:
-          - message
-      required:
-      - error
-    BatchRequestCounts:
-      type: object
-      properties:
-        completed:
-          type: integer
-          description: 已完成的请求数量
-        failed:
-          type: integer
-          description: 失败的请求数量
-        total:
-          type: integer
-          description: 总请求数量
-      required:
-      - completed
-      - failed
-      - total
     BatchListResponse:
       type: object
       properties:
@@ -356,6 +340,22 @@ components:
       required:
       - object
       - data
+    BatchRequestCounts:
+      type: object
+      properties:
+        completed:
+          type: integer
+          description: 已完成的请求数量
+        failed:
+          type: integer
+          description: 失败的请求数量
+        total:
+          type: integer
+          description: 总请求数量
+      required:
+      - completed
+      - failed
+      - total
   securitySchemes:
     bearerAuth:
       type: http

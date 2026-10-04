@@ -52,6 +52,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    EstimateTokenResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            total_tokens:
+              type: integer
+              description: 估算的总 Token 数量
+              example: 80
+          required:
+          - total_tokens
+      required:
+      - data
     ErrorResponse:
       type: object
       properties:
@@ -71,48 +85,6 @@ components:
           - message
       required:
       - error
-    EstimateTokenRequest:
-      type: object
-      properties:
-        model:
-          type: string
-          description: 模型 ID
-          default: kimi-k2.5
-          enum:
-          - kimi-k2.6
-          - kimi-k2.5
-          - kimi-k2-0905-preview
-          - kimi-k2-0711-preview
-          - kimi-k2-turbo-preview
-          - moonshot-v1-8k
-          - moonshot-v1-32k
-          - moonshot-v1-128k
-          - moonshot-v1-auto
-          - moonshot-v1-8k-vision-preview
-          - moonshot-v1-32k-vision-preview
-          - moonshot-v1-128k-vision-preview
-        messages:
-          type: array
-          description: '包含迄今为止对话的消息列表。每个元素格式为 {"role": "user", "content": "你好"}。role 支持 system、user、assistant 其一，content 不得为空'
-          items:
-            $ref: '#/components/schemas/Message'
-      required:
-      - model
-      - messages
-    EstimateTokenResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            total_tokens:
-              type: integer
-              description: 估算的总 Token 数量
-              example: 80
-          required:
-          - total_tokens
-      required:
-      - data
     Message:
       type: object
       properties:
@@ -191,6 +163,34 @@ components:
       required:
       - role
       - content
+    EstimateTokenRequest:
+      type: object
+      properties:
+        model:
+          type: string
+          description: 模型 ID
+          default: kimi-k2.5
+          enum:
+          - kimi-k2.6
+          - kimi-k2.5
+          - kimi-k2-0905-preview
+          - kimi-k2-0711-preview
+          - kimi-k2-turbo-preview
+          - moonshot-v1-8k
+          - moonshot-v1-32k
+          - moonshot-v1-128k
+          - moonshot-v1-auto
+          - moonshot-v1-8k-vision-preview
+          - moonshot-v1-32k-vision-preview
+          - moonshot-v1-128k-vision-preview
+        messages:
+          type: array
+          description: '包含迄今为止对话的消息列表。每个元素格式为 {"role": "user", "content": "你好"}。role 支持 system、user、assistant 其一，content 不得为空'
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+      - model
+      - messages
   securitySchemes:
     bearerAuth:
       type: http
