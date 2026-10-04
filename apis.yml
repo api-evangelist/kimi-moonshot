@@ -46,6 +46,7 @@ tags:
   - OpenAI-Compatible
   - Multi-Modal
   - China
+  - Foundation Models
 tags_raw:
   - LLM
   - Long Context
@@ -53,6 +54,7 @@ tags_raw:
   - OpenAI Compatible
   - Multimodal
   - China
+  - Foundation Models
 created: '2026-05-23'
 modified: '2026-05-29'
 specificationVersion: '0.23'
