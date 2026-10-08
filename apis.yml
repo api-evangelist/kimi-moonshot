@@ -240,6 +240,12 @@ apis:
   - type: AsyncAPI
     url: asyncapi/kimi-moonshot-asyncapi.yml
 common:
+  - type: Plans
+    url: plans/kimi-moonshot-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/kimi-moonshot-rate-limits.yml
+  - type: FinOps
+    url: finops/kimi-moonshot-finops.yml
   - type: AgenticAccess
     url: agentic-access/kimi-moonshot-agentic-access.yml
   - type: DomainSecurity
